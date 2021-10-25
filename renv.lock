@@ -1,10 +1,10 @@
 {
   "R": {
-    "Version": "4.1.0",
+    "Version": "4.0.5",
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://cloud.r-project.org"
+        "URL": "https://cran.rstudio.com"
       }
     ]
   },
@@ -39,8 +39,8 @@
       "Package": "CohortDiagnostics",
       "Version": "2.1.0",
       "Source": "GitHub",
-      "Remotes": "ohdsi/Eunomia, ohdsi/FeatureExtraction, ohdsi/ROhdsiWebApi,\nohdsi/CirceR",
       "RemoteType": "github",
+      "Remotes": "ohdsi/Eunomia, ohdsi/FeatureExtraction, ohdsi/ROhdsiWebApi,\nohdsi/CirceR",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "CohortDiagnostics",
       "RemoteUsername": "OHDSI",
@@ -434,13 +434,6 @@
       "Repository": "CRAN",
       "Hash": "2b06f9e415a62b6762e4b8098d2aecbc"
     },
-    "crul": {
-      "Package": "crul",
-      "Version": "1.1.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "345d571cc120a54c91ac952c6da4392e"
-    },
     "curl": {
       "Package": "curl",
       "Version": "4.3.1",
@@ -700,13 +693,6 @@
       "Repository": "CRAN",
       "Hash": "6fdaa86d0700f8b3e92ee3c445a5a10d"
     },
-    "httpcode": {
-      "Package": "httpcode",
-      "Version": "0.3.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "13641a1c6d2cc98801b76764078e17ea"
-    },
     "httpuv": {
       "Package": "httpuv",
       "Version": "1.6.1",
@@ -951,13 +937,6 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "8672ae02bd20f6479bce2d06c7ff1401"
-    },
-    "pingr": {
-      "Package": "pingr",
-      "Version": "2.0.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e293e79be42ffd336d938937fd3017fb"
     },
     "pkgbuild": {
       "Package": "pkgbuild",
