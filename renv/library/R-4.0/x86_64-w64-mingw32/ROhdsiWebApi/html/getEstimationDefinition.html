@@ -5,13 +5,11 @@
 
 <table width="100%" summary="page for getEstimationDefinition {ROhdsiWebApi}"><tr><td>getEstimationDefinition {ROhdsiWebApi}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Get Estimation id definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
+<h2>Get Estimation id definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
 
 <h3>Description</h3>
 
-<p>Get Estimation id definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
+<p>Get Estimation id definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
 </p>
 
 
@@ -27,13 +25,14 @@ getEstimationDefinition(estimationId, baseUrl)
 <table summary="R argblock">
 <tr valign="top"><td><code>estimationId</code></td>
 <td>
-<p>An integer id representing the id that uniquely identifies a 
-Estimation definition in a WebApi instance.</p>
+<p>An integer id representing the id that uniquely identifies a Estimation
+definition in a WebApi instance.</p>
 </td></tr>
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 

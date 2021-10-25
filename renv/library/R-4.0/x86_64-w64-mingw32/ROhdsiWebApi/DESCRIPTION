@@ -18,7 +18,7 @@ Depends: R (>= 3.1.0),
 Imports: checkmate, dplyr, httr (>= 1.3.1), lifecycle, lubridate, openxlsx (>=
     4.0.17), purrr, readr, RJSONIO, scales, SqlRender, stringr, tibble, tidyr,
     rlang
-Suggests: testthat, knitr, rmarkdown, httpuv, jsonlite, withr, httptest
+Suggests: testthat, knitr, rmarkdown, httpuv, jsonlite, plumber, callr
 URL: https://ohdsi.github.io/ROhdsiWebApi/,
     https://github.com/OHDSI/ROhdsiWebApi
 BugReports: https://github.com/OHDSI/ROhdsiWebApi/issues
@@ -32,15 +32,15 @@ Author: Gowtham Rao [aut, cre],
  Martijn Schuemie [aut],
  Jamie Gilbert [aut],
  Observational Health Data Science and Informatics [cph]
-Built: R 4.0.5; ; 2021-09-22 17:33:27 UTC; windows
+Built: R 4.0.5; ; 2021-10-25 15:32:08 UTC; windows
 RemoteType: github
 RemoteHost: api.github.com
+RemoteUsername: ohdsi
 RemoteRepo: ROhdsiWebApi
-RemoteUsername: OHDSI
-RemoteRef: develop
-RemoteSha: f3bbf477fbd547c9a5bc2a1c5f0defc0728eb8b9
+RemoteRef: master
+RemoteSha: db363a4e5d77dfa1a68267a9e1e4697ec46c02f1
 GithubHost: api.github.com
 GithubRepo: ROhdsiWebApi
-GithubUsername: OHDSI
-GithubRef: develop
-GithubSHA1: f3bbf477fbd547c9a5bc2a1c5f0defc0728eb8b9
+GithubUsername: ohdsi
+GithubRef: master
+GithubSHA1: db363a4e5d77dfa1a68267a9e1e4697ec46c02f1

@@ -5,13 +5,11 @@
 
 <table width="100%" summary="page for deletePredictionDefinition {ROhdsiWebApi}"><tr><td>deletePredictionDefinition {ROhdsiWebApi}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Delete Prediction id definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
+<h2>Delete Prediction id definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
 
 <h3>Description</h3>
 
-<p>Delete Prediction id definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
+<p>Delete Prediction id definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
 </p>
 
 
@@ -27,13 +25,14 @@ deletePredictionDefinition(predictionId, baseUrl)
 <table summary="R argblock">
 <tr valign="top"><td><code>predictionId</code></td>
 <td>
-<p>An integer id representing the id that uniquely identifies a 
-Prediction definition in a WebApi instance.</p>
+<p>An integer id representing the id that uniquely identifies a Prediction
+definition in a WebApi instance.</p>
 </td></tr>
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 

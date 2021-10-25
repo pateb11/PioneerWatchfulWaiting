@@ -28,15 +28,15 @@ Author: Martijn Schuemie [aut],
  Patrick Ryan [aut],
  Jenna Reps [aut],
  Anthony Sena [aut, cre]
-Built: R 4.0.5; ; 2021-09-22 17:33:37 UTC; windows
+Built: R 4.0.5; ; 2021-10-25 15:32:15 UTC; windows
 RemoteType: github
 RemoteHost: api.github.com
-RemoteRepo: FeatureExtraction
 RemoteUsername: ohdsi
-RemoteRef: HEAD
+RemoteRepo: FeatureExtraction
+RemoteRef: master
 RemoteSha: 7e615050508bd1915e8437cf98fceacacbda4b9c
 GithubHost: api.github.com
 GithubRepo: FeatureExtraction
 GithubUsername: ohdsi
-GithubRef: HEAD
+GithubRef: master
 GithubSHA1: 7e615050508bd1915e8437cf98fceacacbda4b9c

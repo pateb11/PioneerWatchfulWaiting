@@ -5,13 +5,11 @@
 
 <table width="100%" summary="page for detectCohortsByName {ROhdsiWebApi}"><tr><td>detectCohortsByName {ROhdsiWebApi}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Detect the presence of string matched Cohort definitions.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
+<h2>Detect the presence of string matched Cohort definitions. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
 
 <h3>Description</h3>
 
-<p>Detect the presence of string matched Cohort definitions.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
+<p>Detect the presence of string matched Cohort definitions. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
 </p>
 
 
@@ -36,15 +34,15 @@ detectCohortsByName(pattern, negate = FALSE, baseUrl)
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 
 
 <h3>Details</h3>
 
-<p>Detect string matched Cohort definition names from the WebApi, and retrieve
-metadata definitions.
+<p>Detect string matched Cohort definition names from the WebApi, and retrieve metadata definitions.
 </p>
 
 
@@ -58,8 +56,8 @@ metadata definitions.
 
 <pre>
 ## Not run: 
-detectCohorts(pattern = 'this text string to search in pattern', 
-baseUrl = "http://server.org:80/WebAPI")
+detectCohorts(pattern = "this text string to search in pattern",
+              baseUrl = "http://server.org:80/WebAPI")
 
 ## End(Not run)
 </pre>

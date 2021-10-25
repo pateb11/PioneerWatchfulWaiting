@@ -5,13 +5,11 @@
 
 <table width="100%" summary="page for deleteConceptSetDefinition {ROhdsiWebApi}"><tr><td>deleteConceptSetDefinition {ROhdsiWebApi}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Delete ConceptSet id definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
+<h2>Delete ConceptSet id definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
 
 <h3>Description</h3>
 
-<p>Delete ConceptSet id definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
+<p>Delete ConceptSet id definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
 </p>
 
 
@@ -27,13 +25,14 @@ deleteConceptSetDefinition(conceptSetId, baseUrl)
 <table summary="R argblock">
 <tr valign="top"><td><code>conceptSetId</code></td>
 <td>
-<p>An integer id representing the id that uniquely identifies a 
-ConceptSet definition in a WebApi instance.</p>
+<p>An integer id representing the id that uniquely identifies a ConceptSet
+definition in a WebApi instance.</p>
 </td></tr>
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 

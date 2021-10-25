@@ -1,8 +1,8 @@
 Package: CohortDiagnostics
 Type: Package
 Title: Diagnostics for OHDSI Cohorts
-Version: 2.1.0
-Date: 2021-05-24
+Version: 2.1.3
+Date: 2021-10-09
 Authors@R: c(
  person("Gowtham", "Rao", email = "rao@ohdsi.org", role = c("aut", "cre")),
  person("Martijn", "Schuemie", email = "schuemie@ohdsi.org", role = c("aut")),
@@ -15,18 +15,18 @@ Maintainer: Gowtham Rao <rao@ohdsi.org>
 Description: Diagnostics for cohorts that use the OMOP Common Data Model and the OHDSI tools.
 Depends: DatabaseConnector (>= 4.0.0), FeatureExtraction (>= 3.1.1), R (>=
     4.0.0)
-Imports: Andromeda, checkmate, CirceR, clock, digest, dplyr (>= 1.0.0),
-    methods, ParallelLogger (>= 2.0.0), pool, readr (>= 1.4.0), RJSONIO, rlang,
-    ROhdsiWebApi (>= 1.2.0), SqlRender (>= 1.7.0), stringr, tidyr (>= 1.0.0)
-Suggests: DT, Eunomia, ggiraph, ggplot2, htmltools, knitr, lubridate, plotly,
-    purrr, RColorBrewer, rmarkdown, RSQLite (>= 2.2.1), scales, shiny,
-    shinydashboard, shinyWidgets, testthat, withr, zip
+Imports: Andromeda, checkmate, clock, digest, dplyr (>= 1.0.0), methods,
+    ParallelLogger (>= 2.0.0), readr (>= 2.0.1), RJSONIO, rlang, ROhdsiWebApi
+    (>= 1.2.0), SqlRender (>= 1.7.0), stringr, tidyr (>= 1.0.0)
+Suggests: CirceR, DT, Eunomia, ggiraph, ggplot2, htmltools, knitr, lubridate,
+    pool, plotly, purrr, RColorBrewer, remotes, rmarkdown, RSQLite (>= 2.2.1),
+    scales, shiny, shinydashboard, shinyWidgets, testthat, withr, zip
 License: Apache License
 VignetteBuilder: knitr
 URL: https://ohdsi.github.io/CohortDiagnostics,
     https://github.com/OHDSI/CohortDiagnostics
 BugReports: https://github.com/OHDSI/CohortDiagnostics/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Encoding: UTF-8
 Language: en-US
 Author: Gowtham Rao [aut, cre],
@@ -35,19 +35,17 @@ Author: Gowtham Rao [aut, cre],
  James Weaver [aut],
  Jamie Gilbert [aut],
  Observational Health Data Science and Informatics [cph]
-Built: R 4.0.5; ; 2021-09-22 17:33:46 UTC; windows
+Built: R 4.0.5; ; 2021-10-25 15:32:24 UTC; windows
 RemoteType: github
-Remotes: ohdsi/Eunomia, ohdsi/FeatureExtraction, ohdsi/ROhdsiWebApi,
-    ohdsi/CirceR
 RemoteHost: api.github.com
-RemoteRepo: CohortDiagnostics
 RemoteUsername: OHDSI
-RemoteRef: v2.1.0
-RemoteSha: 93e8915b504318300c68a565945dd17807a88567
+RemoteRepo: CohortDiagnostics
+RemoteRef: master
+RemoteSha: 2963a5db6b301ec8fd93fa3698cf1f1a5bfcf9ac
 GithubHost: api.github.com
 GithubRepo: CohortDiagnostics
 GithubUsername: OHDSI
-GithubRef: v2.1.0
-GithubSHA1: 93e8915b504318300c68a565945dd17807a88567
+GithubRef: master
+GithubSHA1: 2963a5db6b301ec8fd93fa3698cf1f1a5bfcf9ac
 Remotes: ohdsi/Eunomia, ohdsi/FeatureExtraction, ohdsi/ROhdsiWebApi,
     ohdsi/CirceR

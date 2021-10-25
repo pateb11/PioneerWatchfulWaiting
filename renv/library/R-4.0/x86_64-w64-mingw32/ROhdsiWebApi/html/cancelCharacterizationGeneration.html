@@ -25,13 +25,14 @@ cancelCharacterizationGeneration(characterizationId, baseUrl, sourceKey)
 <table summary="R argblock">
 <tr valign="top"><td><code>characterizationId</code></td>
 <td>
-<p>An integer id representing the id that uniquely identifies a 
+<p>An integer id representing the id that uniquely identifies a
 Characterization definition in a WebApi instance.</p>
 </td></tr>
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 <tr valign="top"><td><code>sourceKey</code></td>
 <td>
@@ -57,9 +58,9 @@ Configuration page</p>
 
 <pre>
 ## Not run: 
-cancelCharacterizationGeneration(characterizationId = 13242, 
-baseUrl = "http://server.org:80/WebAPI",
-sourceKey = 'HCUP')
+cancelCharacterizationGeneration(characterizationId = 13242,
+                                 baseUrl = "http://server.org:80/WebAPI",
+                                 sourceKey = "HCUP")
 
 ## End(Not run)
 </pre>

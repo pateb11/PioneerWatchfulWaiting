@@ -5,13 +5,11 @@
 
 <table width="100%" summary="page for existsPredictionName {ROhdsiWebApi}"><tr><td>existsPredictionName {ROhdsiWebApi}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Check if Prediction definition name exists.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
+<h2>Check if Prediction definition name exists. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
 
 <h3>Description</h3>
 
-<p>Check if Prediction definition name exists.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
+<p>Check if Prediction definition name exists. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
 </p>
 
 
@@ -32,7 +30,8 @@ existsPredictionName(predictionName, baseUrl)
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 
@@ -45,8 +44,8 @@ existsPredictionName(predictionName, baseUrl)
 
 <h3>Value</h3>
 
-<p>If found, the function will return a tibble with details of the specification.
-If not found, FALSE will be returned.
+<p>If found, the function will return a tibble with details of the specification. If not found, FALSE
+will be returned.
 </p>
 
 
@@ -54,8 +53,8 @@ If not found, FALSE will be returned.
 
 <pre>
 ## Not run: 
-existsPredictionName(predictionName = 'this text string needs to be checked', 
-baseUrl = "http://server.org:80/WebAPI")
+existsPredictionName(predictionName = "this text string needs to be checked",
+                     baseUrl = "http://server.org:80/WebAPI")
 
 ## End(Not run)
 </pre>

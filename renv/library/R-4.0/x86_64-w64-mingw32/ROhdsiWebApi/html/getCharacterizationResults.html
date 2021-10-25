@@ -31,7 +31,8 @@ characterization analysis definition in a WebApi instance.</p>
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 
@@ -52,8 +53,7 @@ characterization analysis definition in a WebApi instance.</p>
 
 <pre>
 ## Not run: 
-getCharacterizationResults(characterizationId = 342, 
-baseUrl = "http://server.org:80/WebAPI")
+getCharacterizationResults(characterizationId = 342, baseUrl = "http://server.org:80/WebAPI")
 
 ## End(Not run)
 </pre>

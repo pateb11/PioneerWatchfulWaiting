@@ -25,13 +25,14 @@ getIncidenceRateGenerationInformation(incidenceRateId, baseUrl)
 <table summary="R argblock">
 <tr valign="top"><td><code>incidenceRateId</code></td>
 <td>
-<p>An integer id representing the id that uniquely identifies a 
-IncidenceRate definition in a WebApi instance.</p>
+<p>An integer id representing the id that uniquely identifies a IncidenceRate
+definition in a WebApi instance.</p>
 </td></tr>
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 
@@ -52,8 +53,8 @@ IncidenceRate definition in a WebApi instance.</p>
 
 <pre>
 ## Not run: 
-getIncidenceRateGenerationInformation(incidenceRateId = 13242, 
-                                             baseUrl = "http://server.org:80/WebAPI")
+getIncidenceRateGenerationInformation(incidenceRateId = 13242,
+                                      baseUrl = "http://server.org:80/WebAPI")
 
 ## End(Not run)
 </pre>

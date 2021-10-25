@@ -5,13 +5,11 @@
 
 <table width="100%" summary="page for isValidIncidenceRateId {ROhdsiWebApi}"><tr><td>isValidIncidenceRateId {ROhdsiWebApi}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>is IncidenceRate id a valid definition in the WebApi.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
+<h2>is IncidenceRate id a valid definition in the WebApi. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a></h2>
 
 <h3>Description</h3>
 
-<p>is IncidenceRate id a valid definition in the WebApi.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
+<p>is IncidenceRate id a valid definition in the WebApi. <a href="https://lifecycle.r-lib.org/articles/stages.html#stable"><img src="../help/figures/lifecycle-stable.svg" alt='[Stable]' /></a>
 </p>
 
 
@@ -32,15 +30,16 @@ isValidIncidenceRateId(incidenceRateIds, baseUrl)
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 
 
 <h3>Details</h3>
 
-<p>Checks if a set of id for a IncidenceRate is valid. The following checks are 
-performed. 1) checks if all the ids exists in the WebApi i.e. valid.
+<p>Checks if a set of id for a IncidenceRate is valid. The following checks are performed. 1) checks
+if all the ids exists in the WebApi i.e. valid.
 </p>
 
 
@@ -54,7 +53,8 @@ performed. 1) checks if all the ids exists in the WebApi i.e. valid.
 
 <pre>
 ## Not run: 
-isValidIncidenceRateId(incidenceRateIds = c(13242, 3423, 34), baseUrl = "http://server.org:80/WebAPI")
+isValidIncidenceRateId(incidenceRateIds = c(13242, 3423, 34),
+                       baseUrl = "http://server.org:80/WebAPI")
 
 ## End(Not run)
 </pre>

@@ -26,7 +26,8 @@ getCohortInclusionRulesAndCounts(baseUrl, cohortId, sourceKey)
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 <tr valign="top"><td><code>cohortId</code></td>
 <td>

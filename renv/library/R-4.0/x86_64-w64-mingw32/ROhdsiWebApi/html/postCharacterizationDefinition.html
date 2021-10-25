@@ -5,13 +5,11 @@
 
 <table width="100%" summary="page for postCharacterizationDefinition {ROhdsiWebApi}"><tr><td>postCharacterizationDefinition {ROhdsiWebApi}</td><td style="text-align: right;">R Documentation</td></tr></table>
 
-<h2>Post Characterization definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="../help/figures/lifecycle-maturing.svg" alt='[Maturing]' /></a></h2>
+<h2>Post Characterization definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="../help/figures/lifecycle-maturing.svg" alt='[Maturing]' /></a></h2>
 
 <h3>Description</h3>
 
-<p>Post Characterization definition.
-<a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="../help/figures/lifecycle-maturing.svg" alt='[Maturing]' /></a>
+<p>Post Characterization definition. <a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="../help/figures/lifecycle-maturing.svg" alt='[Maturing]' /></a>
 </p>
 
 
@@ -27,21 +25,23 @@ postCharacterizationDefinition(name, characterizationDefinition, baseUrl)
 <table summary="R argblock">
 <tr valign="top"><td><code>name</code></td>
 <td>
-<p>A valid name for the definition. WebApi will use this name (if valid) as
-the name of the definition. WebApi checks for validity,
-such as uniqueness, absence of unacceptable character etc. An error might be thrown.</p>
+<p>A valid name for the definition. WebApi will use this name (if
+valid) as the name of the definition. WebApi checks for
+validity, such as uniqueness, absence of unacceptable character
+etc. An error might be thrown.</p>
 </td></tr>
 <tr valign="top"><td><code>characterizationDefinition</code></td>
 <td>
-<p>An R list object containing the expression for the specification. 
-This will be converted to JSON expression by function and posted into the WebApi.
-Note: only limited checks are performed in R to check the validity of this
-expression.</p>
+<p>An R list object containing the expression for the
+specification. This will be converted to JSON expression by
+function and posted into the WebApi. Note: only limited checks
+are performed in R to check the validity of this expression.</p>
 </td></tr>
 <tr valign="top"><td><code>baseUrl</code></td>
 <td>
 <p>The base URL for the WebApi instance, for example:
-&quot;http://server.org:80/WebAPI&quot;.</p>
+&quot;http://server.org:80/WebAPI&quot;. Note, there is no trailing '/'.
+If trailing '/' is used, you may receive an error.</p>
 </td></tr>
 </table>
 
@@ -54,9 +54,8 @@ expression.</p>
 
 <h3>Value</h3>
 
-<p>This function will return a dataframe object with one row
-describing the posted WebApi expression and its details.
-If unsuccessful a STOP message will be shown.
+<p>This function will return a dataframe object with one row describing the posted WebApi expression
+and its details. If unsuccessful a STOP message will be shown.
 </p>
 
 
@@ -64,9 +63,9 @@ If unsuccessful a STOP message will be shown.
 
 <pre>
 ## Not run: 
-postCharacterizationDefinition(name = "new valid name", 
-characterizationDefinition = definition, 
-baseUrl = "http://server.org:80/WebAPI")
+postCharacterizationDefinition(name = "new valid name",
+                               characterizationDefinition = definition,
+                               baseUrl = "http://server.org:80/WebAPI")
 
 ## End(Not run)
 </pre>
