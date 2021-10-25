@@ -1026,10 +1026,10 @@
     },
     "rJava": {
       "Package": "rJava",
-      "Version": "1.0-4",
+      "Version": "1.0-5",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "0cd1ee479ba887170411af6d81705003"
+      "Hash": "8de045f6ab6a11448c75450aeedc2247"
     },
     "rappdirs": {
       "Package": "rappdirs",
