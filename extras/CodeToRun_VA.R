@@ -42,63 +42,11 @@
 # In section 2 below, you will also need to update the code to use your site specific values. Please scroll
 # down for specific instructions.
 #-----------------------------------------------------------------------------------------------
-#
-# 
-# *******************************************************
-# SECTION 1: Install the package and its dependencies (not needed if already done) -------------
-# *******************************************************
-# 
-# Prevents errors due to packages being built for other R versions: 
-Sys.setenv("R_REMOTES_NO_ERRORS_FROM_WARNINGS" = TRUE)
-# 
-# First, it probably is best to make sure you are up-to-date on all existing packages.
-# Important: This code is best run in R, not RStudio, as RStudio may have some libraries
-# (like 'rlang') in use.
-update.packages(ask = "graphics")
-
-# When asked to update packages, select '1' ('update all') (could be multiple times)
-# When asked whether to install from source, select 'No' (could be multiple times)
-install.packages("devtools")
-devtools::install_github("ohdsi-studies/PioneerWatchfulWaiting")
-
-# If this runs correctly, it should have installed the package and its dependencies, and you can proceed to section 2.
-
-# You can use the following function to verify installed packages against the declared dependencies in Renv.lock
-# Note: this function depends on packages bslib and httpuv
-verifyDependencies <- function() {
-  expected <- RJSONIO::fromJSON("renv.lock")
-  expected <- dplyr::bind_rows(expected[[2]])
-  basePackages <- rownames(installed.packages(priority = "base"))
-  expected <- expected[!expected$Package %in% basePackages, ]
-  observedVersions <- sapply(sapply(expected$Package, packageVersion), paste, collapse = ".")
-  expectedVersions <- sapply(sapply(expected$Version, numeric_version), paste, collapse = ".")
-  mismatchIdx <- which(observedVersions != expectedVersions)
-  if (length(mismatchIdx) > 0) {
-
-    lines <- sapply(mismatchIdx, function(idx) sprintf("- Package %s version %s should be %s",
-                                                       expected$Package[idx],
-                                                       observedVersions[idx],
-                                                       expectedVersions[idx]))
-    message <- paste(c("Mismatch between required and installed package versions.",
-                       lines),
-                     collapse = "\n")
-    stop(message)
-  }
-}
-
-# If you did not download the package, then download renv.lock (assuming master version:)
-# download.file("https://raw.githubusercontent.com/ohdsi-studies/PioneerWatchfulWaiting/master/renv.lock","renv.lock")
-
-# Run this command to verify, it assumes that renv.lock is in the current working directory and requires renv
-verifyDependencies()
-
-# If you run into problems with package dependencies, you can download the package and use renv to create an isolated environment with all dependencies.
-# However, this will re-download all dependencies into a renv/library folder. See the renv package documentation for more information.
 
 # *******************************************************
 # SECTION 2: Running the package ---------------------------------------------------------------
 # *******************************************************
-library(PioneerWatchfulWaiting-KS)
+library(PioneerWatchfulWaiting)
 
 # Optional: specify where the temporary files (used by the ff package) will be created:
 fftempdir <- if (Sys.getenv("FFTEMP_DIR") == "") "~/fftemp" else Sys.getenv("FFTEMP_DIR")
