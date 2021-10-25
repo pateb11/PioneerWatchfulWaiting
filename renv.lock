@@ -16,37 +16,18 @@
       "Repository": "CRAN",
       "Hash": "770d773d049662d2d1d13780f6f5e11c"
     },
-    "BH": {
-      "Package": "BH",
-      "Version": "1.75.0-0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "e4c04affc2cac20c8fec18385cd14691"
-    },
-    "CirceR": {
-      "Package": "CirceR",
-      "Version": "1.1.1",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "CirceR",
-      "RemoteUsername": "ohdsi",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "dc8d462560a22e962f75e5604282e383410afa08",
-      "Hash": "3a7afaece32bb7e2135d655ffe107666"
-    },
     "CohortDiagnostics": {
       "Package": "CohortDiagnostics",
-      "Version": "2.1.0",
+      "Version": "2.1.3",
       "Source": "GitHub",
       "RemoteType": "github",
-      "Remotes": "ohdsi/Eunomia, ohdsi/FeatureExtraction, ohdsi/ROhdsiWebApi,\nohdsi/CirceR",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "CohortDiagnostics",
       "RemoteUsername": "OHDSI",
-      "RemoteRef": "v2.1.0",
-      "RemoteSha": "93e8915b504318300c68a565945dd17807a88567",
-      "Hash": "300f56d9e1240f8a83cb2249b45b82b3"
+      "RemoteRepo": "CohortDiagnostics",
+      "RemoteRef": "master",
+      "RemoteSha": "2963a5db6b301ec8fd93fa3698cf1f1a5bfcf9ac",
+      "Remotes": "ohdsi/Eunomia, ohdsi/FeatureExtraction, ohdsi/ROhdsiWebApi,\nohdsi/CirceR",
+      "Hash": "76e993f853f6961eea164f6d177aeb93"
     },
     "DBI": {
       "Package": "DBI",
@@ -75,11 +56,11 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteRepo": "FeatureExtraction",
       "RemoteUsername": "ohdsi",
-      "RemoteRef": "HEAD",
+      "RemoteRepo": "FeatureExtraction",
+      "RemoteRef": "master",
       "RemoteSha": "7e615050508bd1915e8437cf98fceacacbda4b9c",
-      "Hash": "eab7151ab5fba6eea939b46c551e2ef1"
+      "Hash": "232fe80c9c662c227b614c3cf6050464"
     },
     "KMsurv": {
       "Package": "KMsurv",
@@ -162,11 +143,11 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
+      "RemoteUsername": "ohdsi",
       "RemoteRepo": "ROhdsiWebApi",
-      "RemoteUsername": "OHDSI",
-      "RemoteRef": "develop",
-      "RemoteSha": "f3bbf477fbd547c9a5bc2a1c5f0defc0728eb8b9",
-      "Hash": "e4c09d215fb616a65850be9e719f1097"
+      "RemoteRef": "master",
+      "RemoteSha": "db363a4e5d77dfa1a68267a9e1e4697ec46c02f1",
+      "Hash": "ab79e9838e3e3c818e497f948606bc08"
     },
     "RSQLite": {
       "Package": "RSQLite",
@@ -1066,10 +1047,10 @@
     },
     "readr": {
       "Package": "readr",
-      "Version": "1.4.0",
+      "Version": "2.0.2",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "2639976851f71f330264a9c9c3d43a61"
+      "Hash": "7cb2c3ecfbc2c6786221d2c0c1f6ed68"
     },
     "readxl": {
       "Package": "readxl",
@@ -1350,6 +1331,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "55e157e2aa88161bdb0754218470d204"
+    },
+    "vroom": {
+      "Package": "vroom",
+      "Version": "1.5.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "9c3b3a3f947c7936cea7485349247e5b"
     },
     "waldo": {
       "Package": "waldo",
