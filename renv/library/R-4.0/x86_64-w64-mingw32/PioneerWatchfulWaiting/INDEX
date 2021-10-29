@@ -1,0 +1,17 @@
+createBulkCharacteristics
+                        Create cohort characteristics in bulk
+createCohortTable       Create cohort table(s)
+getCohortCharacteristics
+                        Create characterization of a cohort
+getInclusionStatistics
+                        Get statistics on cohort inclusion criteria
+getInclusionStatisticsFromFiles
+                        Get inclusion criteria statistics from files
+instantiateCohortSet    Instantiate a set of cohort
+preMergeDiagnosticsFiles
+                        Premerge Shiny diagnostics files
+preMergeResultsFiles    Premerge Shiny results files
+uploadResults           Upload results to OHDSI server
+writeBulkCharacteristics
+                        Write cohort characteristics in bulk to the
+                        file system
