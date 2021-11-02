@@ -1,4 +1,41 @@
 
+# desc 1.4.0
+
+* DESCRIPTION objects created with the `!new` command now omit `LazyData: true` 
+  to match new CRAN checks (#105, @malcolmbarrett)
+
+* `description$write()` now writes out the file in the correct encoding
+  (#109).
+
+* `Authors@R` fields are now formatted differently when normalizing a
+  DESCRIPTION file (#78).
+
+* New `description$get_list()`, `description$set_list()` and
+  corresponding `desc_get_list()` and `desc_set_list()` values to query
+  and create comma separated fields (#86).
+
+## Breaking change
+
+* `desc_get_field()` gains a boolean `squish_ws` parameter to normalize
+  whitespace within the retrieved value. It defaults to the value of `trim_ws`
+  (`TRUE` by default). Example with desc's current DESCRIPTION:
+  
+  Old behaviour:
+  
+  ```r
+  > desc::desc_get_field("Description")
+  [1] "... DESCRIPTION files.\n    It is intended for packages ..."
+  ```
+  
+  New behaviour:
+  
+  ```r
+  > desc::desc_get_field("Description")
+  [1] "... DESCRIPTION files. It is intended for packages ..."
+  ```
+  
+  If you want the old behaviour, just set `squish_ws = FALSE`.
+
 # 1.3.0
 
 * Adding authors with long names or other fields (`comment`, typically)

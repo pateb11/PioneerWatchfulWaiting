@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2021-04-30" />
+<meta name="date" content="2021-06-22" />
 
 <title>The curl package: a modern R interface to libcurl</title>
 
@@ -247,7 +247,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">The curl package: a modern R interface to libcurl</h1>
-<h4 class="date">2021-04-30</h4>
+<h4 class="date">2021-06-22</h4>
 
 </div>
 
@@ -274,11 +274,11 @@ str(req)</code></pre>
  $ type       : chr &quot;application/json&quot;
  $ headers    : raw [1:202] 48 54 54 50 ...
  $ modified   : POSIXct[1:1], format: NA
- $ times      : Named num [1:6] 0 0.0211 0.1043 0.2876 0.3738 ...
+ $ times      : Named num [1:6] 0 0.0283 0.1115 0.2933 0.3784 ...
   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;redirect&quot; &quot;namelookup&quot; &quot;connect&quot; &quot;pretransfer&quot; ...
  $ content    : raw [1:370] 7b 0a 20 20 ...</code></pre>
 <pre class="r"><code>parse_headers(req$headers)</code></pre>
-<pre><code>[1] &quot;HTTP/2 200 &quot;                            &quot;date: Fri, 30 Apr 2021 10:35:41 GMT&quot;   
+<pre><code>[1] &quot;HTTP/2 200 &quot;                            &quot;date: Tue, 22 Jun 2021 11:39:35 GMT&quot;   
 [3] &quot;content-type: application/json&quot;         &quot;content-length: 370&quot;                   
 [5] &quot;server: gunicorn/19.9.0&quot;                &quot;access-control-allow-origin: *&quot;        
 [7] &quot;access-control-allow-credentials: true&quot;</code></pre>
@@ -291,8 +291,8 @@ str(req)</code></pre>
         &quot;Accept&quot;: &quot;*/*&quot;,
         &quot;Accept-Encoding&quot;: &quot;deflate, gzip&quot;,
         &quot;Host&quot;: &quot;eu.httpbin.org&quot;,
-        &quot;User-Agent&quot;: &quot;R (4.0.5 x86_64-apple-darwin17.0 x86_64 darwin17.0)&quot;,
-        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd7d-265d9ee869a1cb8c5dae1355&quot;
+        &quot;User-Agent&quot;: &quot;R (4.1.0 x86_64-apple-darwin17.0 x86_64 darwin17.0)&quot;,
+        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbf7-7dc1496858df34da1fd190de&quot;
     },
     &quot;origin&quot;: &quot;91.206.80.110&quot;,
     &quot;url&quot;: &quot;https://eu.httpbin.org/get?foo=123&quot;
@@ -314,8 +314,8 @@ jsonlite::prettify(readLines(tmp))</code></pre>
         &quot;Accept&quot;: &quot;*/*&quot;,
         &quot;Accept-Encoding&quot;: &quot;deflate, gzip&quot;,
         &quot;Host&quot;: &quot;eu.httpbin.org&quot;,
-        &quot;User-Agent&quot;: &quot;R (4.0.5 x86_64-apple-darwin17.0 x86_64 darwin17.0)&quot;,
-        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd7d-521e27e00edb05d92fa61101&quot;
+        &quot;User-Agent&quot;: &quot;R (4.1.0 x86_64-apple-darwin17.0 x86_64 darwin17.0)&quot;,
+        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbf7-1e64507165c9fdfc674ad783&quot;
     },
     &quot;origin&quot;: &quot;91.206.80.110&quot;,
     &quot;url&quot;: &quot;https://eu.httpbin.org/get?bar=456&quot;
@@ -344,8 +344,8 @@ cat(out, sep = &quot;\n&quot;)</code></pre>
 out &lt;- readLines(con)
 close(con)
 cat(out, sep = &quot;\n&quot;)</code></pre>
-<pre><code>    &quot;User-Agent&quot;: &quot;R (4.0.5 x86_64-apple-darwin17.0 x86_64 darwin17.0)&quot;, 
-    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd7d-422edf0a256468e90a5301e1&quot;
+<pre><code>    &quot;User-Agent&quot;: &quot;R (4.1.0 x86_64-apple-darwin17.0 x86_64 darwin17.0)&quot;, 
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbf8-00d97cfb2b128242262858a3&quot;
   }, 
   &quot;origin&quot;: &quot;91.206.80.110&quot;, 
   &quot;url&quot;: &quot;https://eu.httpbin.org/get&quot;
@@ -410,10 +410,10 @@ unlink(&#39;mirrors.csv&#39;)</code></pre>
 <p>If the HTTP request was unsuccessful, R will not continue:</p>
 <pre class="r"><code># Oops! A typo in the URL!
 curl_download(&#39;https://cloud.r-project.org/CRAN_mirrorZ.csv&#39;, &#39;mirrors.csv&#39;)</code></pre>
-<pre><code>## Error: HTTP error 404.</code></pre>
+<pre><code>Error in curl_download(&quot;https://cloud.r-project.org/CRAN_mirrorZ.csv&quot;, : HTTP error 404.</code></pre>
 <pre class="r"><code>con &lt;- curl(&#39;https://cloud.r-project.org/CRAN_mirrorZ.csv&#39;)
 open(con)</code></pre>
-<pre><code>## Error: HTTP error 404.</code></pre>
+<pre><code>Error in open.connection(con): HTTP error 404.</code></pre>
 </div>
 <div id="check-manually" class="section level3">
 <h3>Check manually</h3>
@@ -438,7 +438,7 @@ head(readLines(&#39;mirrors.csv&#39;))</code></pre>
 <p>If you <em>do</em> want the <code>curl_fetch_*</code> functions to automatically raise an error, you should set the <a href="https://curl.se/libcurl/c/CURLOPT_FAILONERROR.html"><code>FAILONERROR</code></a> option to <code>TRUE</code> in the handle of the request.</p>
 <pre class="r"><code>h &lt;- new_handle(failonerror = TRUE)
 curl_fetch_memory(&#39;https://cloud.r-project.org/CRAN_mirrorZ.csv&#39;, handle = h)</code></pre>
-<pre><code>## Error: The requested URL returned error: 404 </code></pre>
+<pre><code>Error in curl_fetch_memory(&quot;https://cloud.r-project.org/CRAN_mirrorZ.csv&quot;, : The requested URL returned error: 404 </code></pre>
 </div>
 </div>
 <div id="customizing-requests" class="section level2">
@@ -467,10 +467,10 @@ handle_setheaders(h,
 <p>However R does not know if an option is actually boolean. So passing <code>TRUE</code>/ <code>FALSE</code> to any numeric option will simply set it to <code>0</code> or <code>1</code> without a warning or error. If an option value cannot be coerced, you get an error:</p>
 <pre class="r"><code># URLOPT_MASFILESIZE must be a number
 handle_setopt(handle, maxfilesize = &quot;foo&quot;)</code></pre>
-<pre><code>## Error: Value for option maxfilesize (114) must be a number.</code></pre>
+<pre><code>Error in handle_setopt(handle, maxfilesize = &quot;foo&quot;): Value for option maxfilesize (114) must be a number.</code></pre>
 <pre class="r"><code># CURLOPT_USERAGENT must be a string
 handle_setopt(handle, useragent = 12345)</code></pre>
-<pre><code>## Error: Value for option useragent (10018) must be a string or raw vector.</code></pre>
+<pre><code>Error in handle_setopt(handle, useragent = 12345): Value for option useragent (10018) must be a string or raw vector.</code></pre>
 </div>
 <div id="enum-long-options" class="section level3">
 <h3>ENUM (long) options</h3>
@@ -532,7 +532,7 @@ jsonlite::prettify(rawToChar(req$content))</code></pre>
         &quot;Content-Type&quot;: &quot;text/moo&quot;,
         &quot;Host&quot;: &quot;eu.httpbin.org&quot;,
         &quot;User-Agent&quot;: &quot;A cow&quot;,
-        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd7e-015483cf75dceb162ce1baac&quot;
+        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbf9-2df5d0da1282b36631ca1168&quot;
     },
     &quot;json&quot;: null,
     &quot;origin&quot;: &quot;91.206.80.110&quot;,
@@ -561,7 +561,7 @@ jsonlite::prettify(readLines(con))</code></pre>
         &quot;Content-Type&quot;: &quot;text/moo&quot;,
         &quot;Host&quot;: &quot;eu.httpbin.org&quot;,
         &quot;User-Agent&quot;: &quot;A cow&quot;,
-        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd7f-6c978a0a422bfff00d26946a&quot;
+        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbf9-58d3447267c94bbb185cf052&quot;
     },
     &quot;json&quot;: null,
     &quot;origin&quot;: &quot;91.206.80.110&quot;,
@@ -591,7 +591,7 @@ jsonlite::prettify(readLines(tmp))</code></pre>
         &quot;Content-Type&quot;: &quot;text/moo&quot;,
         &quot;Host&quot;: &quot;eu.httpbin.org&quot;,
         &quot;User-Agent&quot;: &quot;A cow&quot;,
-        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd7f-3ce032a05e0a567f0cdd34e4&quot;
+        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbf9-668e640404953f09169be8cb&quot;
     },
     &quot;json&quot;: null,
     &quot;origin&quot;: &quot;91.206.80.110&quot;,
@@ -620,7 +620,7 @@ out &lt;- multi_run()</code></pre>
     &quot;Content-Type&quot;: &quot;text/moo&quot;, 
     &quot;Host&quot;: &quot;eu.httpbin.org&quot;, 
     &quot;User-Agent&quot;: &quot;A cow&quot;, 
-    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd7f-4bdc4178461395766e7f3e77&quot;
+    &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbf9-4cc97bae6ccc09ec7a3b7c53&quot;
   }, 
   &quot;json&quot;: null, 
   &quot;origin&quot;: &quot;91.206.80.110&quot;, 
@@ -658,11 +658,11 @@ req2 &lt;- curl_fetch_memory(&quot;https://www.r-project.org&quot;)</code></pre>
 <pre class="r"><code>req &lt;- curl_fetch_memory(&quot;https://api.github.com/users/ropensci&quot;)
 req$times</code></pre>
 <pre><code>     redirect    namelookup       connect   pretransfer starttransfer         total 
-     0.000000      0.015673      0.025481      0.059111      0.176833      0.176943 </code></pre>
+     0.000000      0.043253      0.052201      0.083050      0.094862      0.094986 </code></pre>
 <pre class="r"><code>req2 &lt;- curl_fetch_memory(&quot;https://api.github.com/users/rstudio&quot;)
 req2$times</code></pre>
 <pre><code>     redirect    namelookup       connect   pretransfer starttransfer         total 
-     0.000000      0.000026      0.000028      0.000072      0.122394      0.122556 </code></pre>
+     0.000000      0.000026      0.000029      0.000075      0.125098      0.125266 </code></pre>
 <p>If you really need to re-use a handle, do note that that curl does not cleanup the handle after each request. All of the options and internal fields will linger around for all future request until explicitly reset or overwritten. This can sometimes leads to unexpected behavior.</p>
 <pre class="r"><code>handle_reset(h)</code></pre>
 <p>The <code>handle_reset</code> function will reset all curl options and request headers to the default values. It will <strong>not</strong> erase cookies and it will still keep alive the connections. Therefore it is good practice to call <code>handle_reset</code> after performing a request if you want to reuse the handle for a subsequent request. Still it is always safer to create a new fresh handle when possible, rather than recycling old ones.</p>
@@ -712,7 +712,7 @@ new_handle() %&gt;%
         &quot;Content-Type&quot;: &quot;text/moo&quot;,
         &quot;Host&quot;: &quot;eu.httpbin.org&quot;,
         &quot;User-Agent&quot;: &quot;A cow&quot;,
-        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-608bdd81-02a7357b178fa73403ca31f4&quot;
+        &quot;X-Amzn-Trace-Id&quot;: &quot;Root=1-60d1cbfb-486ab8e61dc7f0f777df572e&quot;
     },
     &quot;json&quot;: null,
     &quot;origin&quot;: &quot;91.206.80.110&quot;,
@@ -760,6 +760,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')

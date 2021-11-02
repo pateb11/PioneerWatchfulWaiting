@@ -35,6 +35,7 @@ desc_get_built	desc_get_built
 desc_get_collate	desc_get_collate
 desc_get_deps	desc_get_deps
 desc_get_field	desc_get_field
+desc_get_list	desc_get_field
 desc_get_maintainer	desc_get_maintainer
 desc_get_or_fail	desc_get_field
 desc_get_remotes	desc_get_remotes
@@ -51,6 +52,7 @@ desc_set_authors	desc_set_authors
 desc_set_collate	desc_set_collate
 desc_set_dep	desc_set_dep
 desc_set_deps	desc_set_deps
+desc_set_list	desc_set
 desc_set_remotes	desc_set_remotes
 desc_set_urls	desc_set_urls
 desc_set_version	desc_set_version
