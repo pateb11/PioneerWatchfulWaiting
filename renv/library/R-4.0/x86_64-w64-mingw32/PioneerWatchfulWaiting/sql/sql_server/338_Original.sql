@@ -1,9 +1,3 @@
-
-/*
-Executing SQL took 38.4 secs
-70/70: Instantiation cohort [PIONEER S38] Prevalent Asthma or Chronic obstructive pulmonary disease (COPD)  (338.sql)
-*/
-drop table if exists #Codesets
 CREATE TABLE #Codesets (
   codeset_id int NOT NULL,
   concept_id bigint NOT NULL
@@ -19,9 +13,9 @@ UNION  select c.concept_id
   join @vocabulary_database_schema.CONCEPT_ANCESTOR ca on c.concept_id = ca.descendant_concept_id
   and ca.ancestor_concept_id in (255573,258780)
   and c.invalid_reason is null
+
 ) I
 ) C;
-
 INSERT INTO #Codesets (codeset_id, concept_id)
 SELECT 3 as codeset_id, c.concept_id FROM (select distinct I.concept_id FROM
 ( 
@@ -46,18 +40,23 @@ UNION  select c.concept_id
 
 ) I
 ) C;
-create nonclustered index idxtemp113434 on #Codesets (codeset_id)
 
 
-drop table if exists #qualified_events
-go
-
+with primary_events (event_id, person_id, start_date, end_date, op_start_date, op_end_date, visit_occurrence_id) as
+(
+-- Begin Primary Events
+select P.ordinal as event_id, P.person_id, P.start_date, P.end_date, op_start_date, op_end_date, cast(P.visit_occurrence_id as bigint) as visit_occurrence_id
+FROM
+(
+  select E.person_id, E.start_date, E.end_date,
+         row_number() OVER (PARTITION BY E.person_id ORDER BY E.sort_date ASC) ordinal,
+         OP.observation_period_start_date as op_start_date, OP.observation_period_end_date as op_end_date, cast(E.visit_occurrence_id as bigint) as visit_occurrence_id
+  FROM 
+  (
   -- Begin Condition Occurrence Criteria
-drop table if exists #PrimaryEvents_C1
 SELECT C.person_id, C.condition_occurrence_id as event_id, C.condition_start_date as start_date, COALESCE(C.condition_end_date, DATEADD(day,1,C.condition_start_date)) as end_date,
        C.CONDITION_CONCEPT_ID as TARGET_CONCEPT_ID, C.visit_occurrence_id,
        C.condition_start_date as sort_date
-INTO #PrimaryEvents_C1
 FROM 
 (
   SELECT co.* 
@@ -65,12 +64,14 @@ FROM
   JOIN #Codesets codesets on ((co.condition_concept_id = codesets.concept_id and codesets.codeset_id = 0))
 ) C
 
+
+-- End Condition Occurrence Criteria
+
+UNION ALL
 -- Begin Condition Occurrence Criteria
-drop table if exists #PrimaryEvents_C2
 SELECT C.person_id, C.condition_occurrence_id as event_id, C.condition_start_date as start_date, COALESCE(C.condition_end_date, DATEADD(day,1,C.condition_start_date)) as end_date,
        C.CONDITION_CONCEPT_ID as TARGET_CONCEPT_ID, C.visit_occurrence_id,
        C.condition_start_date as sort_date
-INTO #PrimaryEvents_C2
 FROM 
 (
   SELECT co.* 
@@ -78,144 +79,120 @@ FROM
   JOIN #Codesets codesets on ((co.condition_concept_id = codesets.concept_id and codesets.codeset_id = 3))
 ) C
 
--- Begin Drug Exposure Criteria /* 3 minutes run time */
-drop table if exists #PrimaryEvents_C3
+
+-- End Condition Occurrence Criteria
+
+UNION ALL
+select PE.person_id, PE.event_id, PE.start_date, PE.end_date, PE.target_concept_id, PE.visit_occurrence_id, PE.sort_date FROM (
+-- Begin Drug Exposure Criteria
 select C.person_id, C.drug_exposure_id as event_id, C.drug_exposure_start_date as start_date,
-		COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
-		C.drug_exposure_start_date as sort_date
-INTO #PrimaryEvents_C3
+       COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
+       C.drug_exposure_start_date as sort_date
 from 
 (
-	select de.* 
-	FROM @cdm_database_schema.DRUG_EXPOSURE de
+  select de.* 
+  FROM @cdm_database_schema.DRUG_EXPOSURE de
 JOIN #Codesets codesets on ((de.drug_concept_id = codesets.concept_id and codesets.codeset_id = 4))
 ) C
-CREATE NONCLUSTERED INDEX idxIDFeifehihfd ON #PrimaryEvents_C3 ([person_id],[event_id]) INCLUDE ([start_date],[end_date],[visit_occurrence_id],[sort_date])
 
-drop table if exists #PrimaryEvents_C4
+
+-- End Drug Exposure Criteria
+
+) PE
+JOIN (
+-- Begin Criteria Group
+select 0 as index_id, person_id, event_id
+FROM
+(
+  select E.person_id, E.event_id 
+  FROM (SELECT Q.person_id, Q.event_id, Q.start_date, Q.end_date, Q.visit_occurrence_id, OP.observation_period_start_date as op_start_date, OP.observation_period_end_date as op_end_date
+FROM (-- Begin Drug Exposure Criteria
 select C.person_id, C.drug_exposure_id as event_id, C.drug_exposure_start_date as start_date,
-			   COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
-			   C.drug_exposure_start_date as sort_date
-INTO #PrimaryEvents_C4
-		from (
-		  select de.* 
-		  FROM @cdm_database_schema.DRUG_EXPOSURE de
-		JOIN #Codesets codesets on ((de.drug_concept_id = codesets.concept_id and codesets.codeset_id = 4))
-		) C
-CREATE NONCLUSTERED INDEX idx_rttrfds9e ON #PrimaryEvents_C4 ([person_id],[event_id],[start_date])
-
-
-drop table if exists #PrimaryEvents_C5
-select C.person_id, C.drug_exposure_id as event_id, C.drug_exposure_start_date as start_date,
-		COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
-		C.drug_exposure_start_date as sort_date
-INTO #PrimaryEvents_C5
+       COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
+       C.drug_exposure_start_date as sort_date
 from 
 (
-	select de.* 
-	FROM @cdm_database_schema.DRUG_EXPOSURE de
+  select de.* 
+  FROM @cdm_database_schema.DRUG_EXPOSURE de
 JOIN #Codesets codesets on ((de.drug_concept_id = codesets.concept_id and codesets.codeset_id = 4))
 ) C
-CREATE CLUSTERED INDEX idx_temp_1343243 ON #PrimaryEvents_C5 ([person_id],[start_date]) 
 
 
-	-- Begin Drug Exposure Criteria
-drop table if exists #PrimaryEvents_C6
-select C.person_id, C.drug_exposure_id as event_id, C.drug_exposure_start_date as start_date,
-		COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
-		C.drug_exposure_start_date as sort_date
-INTO #PrimaryEvents_C6
-from 
-(
-	select de.* 
-	FROM @cdm_database_schema.DRUG_EXPOSURE de
-JOIN #Codesets codesets on ((de.drug_concept_id = codesets.concept_id and codesets.codeset_id = 4))
-) C
-CREATE CLUSTERED INDEX idx_temp_13432434444 ON #PrimaryEvents_C6 ([person_id],[start_date]) 
-
-SELECT Q.person_id, Q.event_id, Q.start_date, Q.end_date, Q.visit_occurrence_id, OP.observation_period_start_date as op_start_date, OP.observation_period_end_date as op_end_date
-INTO #Observation_Sub1
-FROM #PrimaryEvents_C5 Q
-JOIN @cdm_database_schema.OBSERVATION_PERIOD OP 
-	on Q.person_id = OP.person_id 
-	and OP.observation_period_start_date <= Q.start_date 
-	and OP.observation_period_end_date >= Q.start_date
-CREATE CLUSTERED INDEX idx_temp_13432324564 ON #Observation_Sub1 ([person_id],[start_date]) 
-
-drop table if exists #Observation_1
+-- End Drug Exposure Criteria
+) Q
+JOIN @cdm_database_schema.OBSERVATION_PERIOD OP on Q.person_id = OP.person_id 
+  and OP.observation_period_start_date <= Q.start_date and OP.observation_period_end_date >= Q.start_date
+) E
+  INNER JOIN
+  (
+    -- Begin Correlated Criteria
 SELECT 0 as index_id, p.person_id, p.event_id
-INTO #Observation_1
-FROM #Observation_Sub1 P
-INNER JOIN #PrimaryEvents_C6 A 
-	on A.person_id = P.person_id  
-	AND A.START_DATE >= DATEADD(day,180,P.START_DATE) 
-	AND A.START_DATE <= DATEADD(day,365,P.START_DATE)
+FROM (SELECT Q.person_id, Q.event_id, Q.start_date, Q.end_date, Q.visit_occurrence_id, OP.observation_period_start_date as op_start_date, OP.observation_period_end_date as op_end_date
+FROM (-- Begin Drug Exposure Criteria
+select C.person_id, C.drug_exposure_id as event_id, C.drug_exposure_start_date as start_date,
+       COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
+       C.drug_exposure_start_date as sort_date
+from 
+(
+  select de.* 
+  FROM @cdm_database_schema.DRUG_EXPOSURE de
+JOIN #Codesets codesets on ((de.drug_concept_id = codesets.concept_id and codesets.codeset_id = 4))
+) C
+
+
+-- End Drug Exposure Criteria
+) Q
+JOIN @cdm_database_schema.OBSERVATION_PERIOD OP on Q.person_id = OP.person_id 
+  and OP.observation_period_start_date <= Q.start_date and OP.observation_period_end_date >= Q.start_date
+) P
+INNER JOIN
+(
+  -- Begin Drug Exposure Criteria
+select C.person_id, C.drug_exposure_id as event_id, C.drug_exposure_start_date as start_date,
+       COALESCE(C.drug_exposure_end_date, DATEADD(day, 1, C.drug_exposure_start_date)) as end_date, C.drug_concept_id as TARGET_CONCEPT_ID, C.visit_occurrence_id,
+       C.drug_exposure_start_date as sort_date
+from 
+(
+  select de.* 
+  FROM @cdm_database_schema.DRUG_EXPOSURE de
+JOIN #Codesets codesets on ((de.drug_concept_id = codesets.concept_id and codesets.codeset_id = 4))
+) C
+
+
+-- End Drug Exposure Criteria
+
+) A on A.person_id = P.person_id  AND A.START_DATE >= DATEADD(day,180,P.START_DATE) AND A.START_DATE <= DATEADD(day,365,P.START_DATE)
 GROUP BY p.person_id, p.event_id
 HAVING COUNT(A.TARGET_CONCEPT_ID) >= 1
-CREATE NONCLUSTERED INDEX idx_tardrefefd ON #Observation_1 ([person_id]) INCLUDE ([event_id])
+-- End Correlated Criteria
 
+  ) CQ on E.person_id = CQ.person_id and E.event_id = CQ.event_id
+  GROUP BY E.person_id, E.event_id
+  HAVING COUNT(index_id) = 1
+) G
+-- End Criteria Group
+) AC on AC.person_id = pe.person_id and AC.event_id = pe.event_id
 
+  ) E
+	JOIN @cdm_database_schema.observation_period OP on E.person_id = OP.person_id and E.start_date >=  OP.observation_period_start_date and E.start_date <= op.observation_period_end_date
+  WHERE DATEADD(day,0,OP.OBSERVATION_PERIOD_START_DATE) <= E.START_DATE AND DATEADD(day,0,E.START_DATE) <= OP.OBSERVATION_PERIOD_END_DATE
+) P
+WHERE P.ordinal = 1
+-- End Primary Events
 
-with primary_events (event_id, person_id, start_date, end_date, op_start_date, op_end_date, visit_occurrence_id) as
+)
+SELECT event_id, person_id, start_date, end_date, op_start_date, op_end_date, visit_occurrence_id
+INTO #qualified_events
+FROM 
 (
--- Begin Primary Events
-	select P.ordinal as event_id, P.person_id, P.start_date, P.end_date, op_start_date, op_end_date, cast(P.visit_occurrence_id as bigint) as visit_occurrence_id
-	FROM
-	(
-		select E.person_id, E.start_date, E.end_date,
-			 row_number() OVER (PARTITION BY E.person_id ORDER BY E.sort_date ASC) ordinal,
-			 OP.observation_period_start_date as op_start_date, OP.observation_period_end_date as op_end_date, cast(E.visit_occurrence_id as bigint) as visit_occurrence_id
-		FROM (
-			select * from #PrimaryEvents_C1
-			-- End Condition Occurrence Criteria
-			UNION ALL
-			select * from #PrimaryEvents_C2
-			-- End Condition Occurrence Criteria
-			UNION ALL
-			select PE.person_id, PE.event_id, PE.start_date, PE.end_date, PE.target_concept_id, PE.visit_occurrence_id, PE.sort_date 
-			FROM ( select * from #PrimaryEvents_C3 ) PE
-		JOIN (
-			select 0 as index_id, person_id, event_id
-			FROM
-			(
-				select E.person_id, E.event_id 
-				FROM (
-					SELECT Q.person_id, Q.event_id, Q.start_date, Q.end_date, Q.visit_occurrence_id, OP.observation_period_start_date as op_start_date, OP.observation_period_end_date as op_end_date
-					FROM #PrimaryEvents_C4 Q
-					JOIN @cdm_database_schema.OBSERVATION_PERIOD OP 
-						on Q.person_id = OP.person_id 
-						and OP.observation_period_start_date <= Q.start_date 
-						and OP.observation_period_end_date >= Q.start_date
-				) E
-				INNER JOIN #Observation_1 CQ 
-						on E.person_id = CQ.person_id 
-						and E.event_id = CQ.event_id
-					GROUP BY E.person_id, E.event_id
-					HAVING COUNT(index_id) = 1
-				) G
-			) AC 
-			on AC.person_id = pe.person_id 
-			and AC.event_id = pe.event_id
-		) E
-		JOIN @cdm_database_schema.observation_period OP 
-			on E.person_id = OP.person_id 
-			and E.start_date >=  OP.observation_period_start_date 
-			and E.start_date <= op.observation_period_end_date
-		WHERE DATEADD(day,0,OP.OBSERVATION_PERIOD_START_DATE) <= E.START_DATE 
-			AND DATEADD(day,0,E.START_DATE) <= OP.OBSERVATION_PERIOD_END_DATE
-	) P
-	WHERE P.ordinal = 1
-	)
-	SELECT event_id, person_id, start_date, end_date, op_start_date, op_end_date, visit_occurrence_id
-	INTO #qualified_events
-	FROM 
-	(
-		select pe.event_id, pe.person_id, pe.start_date, pe.end_date, pe.op_start_date, pe.op_end_date, row_number() over (partition by pe.person_id order by pe.start_date ASC) as ordinal, cast(pe.visit_occurrence_id as bigint) as visit_occurrence_id
-		FROM primary_events pe  
-	) QE;
+  select pe.event_id, pe.person_id, pe.start_date, pe.end_date, pe.op_start_date, pe.op_end_date, row_number() over (partition by pe.person_id order by pe.start_date ASC) as ordinal, cast(pe.visit_occurrence_id as bigint) as visit_occurrence_id
+  FROM primary_events pe
+  
+) QE
+
+;
 
 --- Inclusion Rule Inserts
-
 
 create table #inclusion_events (inclusion_rule_id bigint,
 	person_id bigint,
