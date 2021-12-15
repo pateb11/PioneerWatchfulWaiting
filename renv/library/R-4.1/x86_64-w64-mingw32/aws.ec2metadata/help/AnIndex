@@ -1,0 +1,7 @@
+aws.ec2metadata-package	ec2metadata
+aws.ec2metadata	ec2metadata
+ecs_metadata	ec2metadata
+instance_document	ec2metadata
+is_ec2	ec2metadata
+is_ecs	ec2metadata
+metadata	ec2metadata

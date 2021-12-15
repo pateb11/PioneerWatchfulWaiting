@@ -1,0 +1,2 @@
+aws.ec2metadata-package
+                        Get EC2 Instance Metadata
